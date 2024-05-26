@@ -3,15 +3,15 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "myproject"
+name = "u7627363"
 authors = [
-    { name = "Your Name", email = "Your.Email@somewhere.edu.au"},
+    { name = "Zongjing Han", email = "u7627363@anu.edu.au"},
 ]
 keywords = ["biology", "genomics", "statistics", "phylogeny", "evolution", "bioinformatics"]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
-dependencies = ["click", "numpy", "scitrack"]
+dependencies = ["click", "numpy", "scitrack", "cogent3"]
 classifiers = [
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Science/Research",
