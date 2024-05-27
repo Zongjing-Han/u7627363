@@ -52,3 +52,24 @@ def test_find_unique_kmers(tmp_dir, runner):
         seq_id, kmers = line.strip().split("\t")
         kmer_set = set(kmers.split(","))
         assert kmer_set == expected_output[seq_id]
+
+
+def test_find_unique_kmers_different_k(tmp_dir, runner):
+    input_file = DATADIR / 'demo.fasta'
+    output_file = tmp_dir / 'output_3mers.txt'
+    args = f"-i {input_file} -k 3 -o {output_file}".split()
+    r = runner.invoke(find_unique_kmers, args, catch_exceptions=False)
+    assert r.exit_code == 0, r.output
+    with open(output_file, 'r') as f:
+        lines = f.readlines()
+    assert len(lines) > 0  
+    expected_output = {
+        "s1": {"TAA", "AAT"},
+        "s2": {"ATG", "TGA", "GAT"},
+        "s3": {"TAC", "ACT", "CTC"}
+    }
+    for line in lines:
+        seq_id, kmers = line.strip().split("\t")
+        kmer_set = set(kmers.split(","))
+        assert kmer_set == expected_output[seq_id]
+
